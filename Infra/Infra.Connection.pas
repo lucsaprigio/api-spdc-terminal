@@ -75,6 +75,7 @@ begin
       Params.DriverID           := TAppConfig.DriverID;
       Params.Values['Port']     := TAppConfig.Port;
       Params.Values['Server']   := TAppConfig.Server;
+      Params.Database           := TAppConfig.Database;
       Params.UserName           := TAppConfig.DBUser;
       Params.Password           := TAppConfig.DBPassword;
     end;
@@ -84,12 +85,15 @@ begin
 
       Params.Values['Port']     := TAppConfig.PortXml;
       Params.Values['Server']   := TAppConfig.ServerXml;
+      Params.Database           := TAppConfig.DBXml;
       Params.UserName           := TAppConfig.DBUserXml;
       Params.Password           := TAppConfig.DBPasswordXml;
     end;
    end;
 
    Params.Values['Protocol'] := 'TCPIP';
+
+   Connected := True;
   end;
 end;
 

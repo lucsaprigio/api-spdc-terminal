@@ -2,7 +2,8 @@ unit DAO.Notas;
 
 interface
 
-uses Infra.Connection, System.JSON, FireDAC.Comp.Client, DataSet.Serialize;
+uses Infra.Connection, System.JSON,
+FireDAC.Comp.Client, DataSet.Serialize, system.SysUtils, System.StrUtils;
 
 type
   TDAONotas = class
@@ -20,6 +21,9 @@ var
 begin
   LConexao := TControllerConection.New(DBPrincipal);
   Query    := TFDQuery.Create(nil);
+
+  aDataIni := aDataIni.Replace('/', '.');
+  aDataFin := aDataFin.Replace('/', '.');
 
   try
     Query.Connection := LConexao.GetConnection;

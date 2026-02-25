@@ -22,6 +22,13 @@ type
     class var FDBUserXml: String;
     class var FDBPasswordXml: String;
     class var FDriverID: string;
+
+    // Configurações SMTP
+    class var FMailPort: String;
+    class var FMailPassword: String;
+    class var FMailHost: String;
+    class var FMailUsername: String;
+
   public
     class procedure CarregarIni;
 
@@ -39,6 +46,11 @@ type
     class property PortXml: String read FPortXml write FPortXml;
     class property DBUserXml: String read FDBUserXml write FDBUserXml;
     class property DBPasswordXml: String read FDBPasswordXml write FDBPasswordXml;
+
+    class property MailHost: String read FMailHost write FMailHost;
+    class property MailPort: String read FMailPort write FMailPort;
+    class property MailUsername: String read FMailUsername write FMailUsername;
+    class property MailPassword: String read FMailPassword write FMailPassword;
   end;
 
 implementation
@@ -59,12 +71,21 @@ begin
        try
          LArquivoINI.WriteString('BancoConfig', 'DriverID', 'FB');
          LArquivoINI.WriteString('BancoConfig', 'Server', '127.0.0.1');
-         LArquivoINI.WriteString('BancoConfig', 'Port', '1433');
+         LArquivoINI.WriteString('BancoConfig', 'Port', '3050');
          LArquivoINI.WriteString('BancoConfig', 'Database', '');
-         LArquivoINI.WriteString('BancoConfig', 'User', 'sa');
-         LArquivoINI.WriteString('BancoConfig', 'Password', '');
+         LArquivoINI.WriteString('BancoConfig', 'User', 'sysdba');
+         LArquivoINI.WriteString('BancoConfig', 'Password', 'masterkey');
 
+         LArquivoINI.WriteString('BancoXml', 'ServerXml', '');
          LArquivoINI.WriteString('BancoXml', 'DatabaseXml', '');
+         LArquivoINI.WriteString('BancoXml', 'PortXml', '');
+         LArquivoINI.WriteString('BancoXml', 'UserXml', 'sysdba');
+         LArquivoINI.WriteString('BancoXml', 'PasswordXml', 'masterkey');
+
+         LArquivoINI.WriteString('SMTP', 'MailHost', '');
+         LArquivoINI.WriteString('SMTP', 'MailPort', '');
+         LArquivoINI.WriteString('SMTP', 'MailUsername', '');
+         LArquivoINI.WriteString('SMTP', 'MailPassword', '');
        finally
         LArquivoINI.Free;
        end;
@@ -83,8 +104,13 @@ begin
     FServerXml     := LArquivoINI.ReadString('BancoXml', 'ServerXml', '127.0.0.1');
     FDBXml         := LArquivoINI.ReadString('BancoXml', 'DatabaseXml', '');
     FPortXml       := LArquivoINI.ReadString('BancoXml', 'PortXml', '');
-    FDBUserXml     := LArquivoINI.ReadString('BancoXml', 'UserXml', '');
-    FDBPasswordXml := LArquivoINI.ReadString('BancoXml', 'PasswordXml', '');
+    FDBUserXml     := LArquivoINI.ReadString('BancoXml', 'UserXml', 'sysdba');
+    FDBPasswordXml := LArquivoINI.ReadString('BancoXml', 'PasswordXml', 'masterkey');
+
+    FMailHost      := LArquivoINI.ReadString('SMTP', 'MailHost', '');
+    FMailPort      := LArquivoINI.ReadString('SMTP', 'MailPort', '');
+    FMailUsername  := LArquivoINI.ReadString('SMTP', 'MailUsername', '');
+    FMailPassword  := LArquivoINI.ReadString('SMTP', 'MailPassword', '');
   finally
     LArquivoINI.Free;
   end;

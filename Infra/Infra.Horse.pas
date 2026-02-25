@@ -3,7 +3,7 @@ unit Infra.Horse;
 interface
 
 uses
-  Horse, Horse.Jhonson, Infra.Logger, System.SysUtils;
+  Horse, Horse.Jhonson, Infra.Logger, System.SysUtils, Router.ArquivosXml;
 
 type
   TServerHorse = class
@@ -18,6 +18,8 @@ implementation
 class procedure TServerHorse.Start(APort: integer);
 begin
    THorse.Use(Jhonson);
+
+   Router.ArquivosXml.Registry;
 
    THorse.Listen(APort,
    procedure
