@@ -7,6 +7,12 @@ program ApiSpdc;
 uses
   System.SysUtils,
   Horse,
+
+  {$IFDEF MSWINDOWS}
+  Winapi.Windows,
+  Utils.Startup in 'Utils\Utils.Startup.pas',
+  {$ENDIF}
+
   Infra.Horse in 'Infra\Infra.Horse.pas',
   Infra.Logger in 'Infra\Infra.Logger.pas',
   Utils.Configuracao in 'Utils\Utils.Configuracao.pas',
@@ -21,6 +27,30 @@ uses
   Router.ArquivosXml in 'Routers\Router.ArquivosXml.pas',
   Service.ACBrMail.Email in 'Services\Service.ACBrMail.Email.pas';
 
+
+var
+  {$IFDEF MSWINDOWS}
+  LMutex : THandle;
+  {$ENDIF}
+begin
+  {$IFDEF MSWINDOWS}
+  LMutex := CreateMutex(nil, True, 'ApiSpdc_Terminal');
+
+  if (LMutex = 0) or (GetLastError = ERROR_ALREADY_EXISTS) then
+  begin
+    Writeln('A API ja esta em execucao no momento!');
+    Readln;
+    Exit;
+  end;
+  {$ENDIF}
+  try
+     TAppConfig.CarregarIni;
+
+     {$IFDEF MSWINDOWS}
+      TUtilsStartup.RegistrarStartupWindows;
+     {$ENDIF}
+
+     TServerHorse.Start(9005);
 begin
   try
      TAppConfig.CarregarIni;
@@ -29,4 +59,10 @@ begin
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);
   end;
+
+  {$IFDEF MSWINDOWS}
+  if LMutex <> 0 then
+    ReleaseMutex(LMutex);
+  {$ENDIF}
+
 end.

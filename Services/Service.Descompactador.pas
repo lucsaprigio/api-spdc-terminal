@@ -22,11 +22,10 @@ begin
 
   LInput  := TBytesStream.Create(ABytes);
   LOutput := TBytesStream.Create;
-
   try
+   try
     // Prepara o decompression para o Blob Original
     LDecompressionStream := TZDecompressionStream.Create(LInput);
-
     try
       LOutput.CopyFrom(LDecompressionStream, 0);
 
@@ -34,6 +33,20 @@ begin
     finally
       LDecompressionStream.Free;
     end;
+
+   except on E: EZDecompressionError do
+   begin
+     Result := TEncoding.UTF8.GetString(ABytes);
+
+     if not Result.Contains('<') then
+      Result := '';
+   end;
+   on E:Exception do
+   begin
+     Result := '';
+   end;
+  end;
+
   finally
     LInput.Free;
     LOutput.Free;

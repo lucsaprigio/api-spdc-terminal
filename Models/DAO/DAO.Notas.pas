@@ -32,6 +32,8 @@ begin
                       ' FROM DB_LISTA_XML_GERAL' +
                       ' WHERE DATA BETWEEN :DT_INI AND :DT_FIN' +
                       ' AND CNPJ_NF = :CNPJ_NF' +
+                      ' AND MODELO IN (''55'', ''65'')' +
+                      ' AND STATUS = ''A'''+
                       ' ORDER BY E_S, DATA' ;
 
     Query.ParamByName('DT_INI').AsString  := aDataIni;

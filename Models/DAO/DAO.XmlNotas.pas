@@ -27,13 +27,16 @@ begin
 
     Result.MacroByName('Chaves').AsRaw := aListaChaves;
 
+    {$IFDEF DEBUG}
     TLogger.Info('1. SQL Base: ' + Result.SQL.Text);
     TLogger.Info('2. Macro Injetada: ' + aListaChaves);
-
+    {$ENDIF}
     Result.Open;
 
+    {$IFDEF DEBUG}
     TLogger.Info('3. Registros encontrados: ' + Result.RecordCount.ToString);
     TLogger.Info('-------------------------');
+    {$ENDIF}
   except
     Result.Free;
     raise;
