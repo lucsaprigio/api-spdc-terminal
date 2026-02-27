@@ -75,15 +75,12 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-<<<<<<< HEAD
     <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
         <Cfg_2_Win32>true</Cfg_2_Win32>
         <CfgParent>Cfg_2</CfgParent>
         <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
-=======
->>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
@@ -94,10 +91,7 @@
         <DCC_K>false</DCC_K>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <SanitizedProjectName>ApiSpdc</SanitizedProjectName>
-<<<<<<< HEAD
         <DCC_UnitSearchPath>modules\.dcp;..\modules\.dcp;modules\.dcu;..\modules\.dcu;modules;..\modules;modules\horse\src;..\modules\horse\src;modules\horse-cors\src;..\modules\horse-cors\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-=======
->>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <DCC_UsePackage>emshosting;fmx;DbxCommonDriver;bindengine;IndyIPCommon;emsclient;FireDACCommonDriver;IndyProtocols;dbxcds;IndyIPClient;FmxTeeUI;emsedge;bindcompfmx;ibmonitor;FireDACSqliteDriver;DbxClientDriver;soapmidas;fmxFireDAC;dbexpress;inet;DataSnapCommon;fmxase;dbrtl;FireDACDBXDriver;CustomIPTransport;DBXInterBaseDriver;IndySystem;ibxbindings;bindcomp;FireDACCommon;emsserverresource;inetstn;IndyCore;RESTBackendComponents;bindcompdbx;rtl;RESTComponents;DBXSqliteDriver;dsnapxml;IndyIPServer;DataSnapClient;DataSnapProviderClient;DataSnapFireDAC;emsclientfiredac;FireDAC;FireDACDSDriver;xmlrtl;tethering;ibxpress;dsnap;CloudService;DataSnapNativeClient;FMXTee;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
@@ -219,7 +213,6 @@
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
-<<<<<<< HEAD
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>ApiSpdc_Icon1.ico</Icon_MainIcon>
@@ -227,18 +220,13 @@
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <DCC_ExeOutput>C:\SpdcAPI\</DCC_ExeOutput>
     </PropertyGroup>
-=======
->>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-<<<<<<< HEAD
         <DCCReference Include="Utils\Utils.Startup.pas">
             <Form>$ENDIF</Form>
         </DCCReference>
-=======
->>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
         <DCCReference Include="Infra\Infra.Horse.pas"/>
         <DCCReference Include="Infra\Infra.Logger.pas"/>
         <DCCReference Include="Utils\Utils.Configuracao.pas"/>
@@ -272,13 +260,10 @@
                 <Source>
                     <Source Name="MainSource">ApiSpdc.dpr</Source>
                 </Source>
-<<<<<<< HEAD
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
-=======
->>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
             </Delphi.Personality>
             <Deployment Version="5">
                 <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">

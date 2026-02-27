@@ -35,7 +35,7 @@ var
   I: Integer;
   LObjectNota : TJSONObject;
   LChave, LEntSaida, LModelo, LListaChaves : String;
-  LJsonES : TJSONObject; // "E" : { }  "S": { } - Vão ser agrupados dessa forma
+  LJsonES : TJSONObject; // "E" : { }  "S": { } - Vï¿½o ser agrupados dessa forma
   LArrayModelo : TJSONArray;
   LMapaNotas : TDictionary<String, TJSONObject>;
 begin
@@ -67,7 +67,7 @@ begin
       LChave    := LNotas.GetValue<String>('CHAVE');
       LEntSaida := LNotas.GetValue<String>('E_S');
 
-      // Pegando a posição do modelo na String do XML
+      // Pegando a posiï¿½ï¿½o do modelo na String do XML
       LModelo := Copy(LChave, 21, 2);
 
       LListaChaves := LListachaves + QuotedStr(LChave) + ',';
@@ -148,7 +148,7 @@ begin
       LZipFile.Open(LZipStream, zmWrite);
 
       if LQueryXml.IsEmpty then begin
-          TLogger.Info('Não foram achados arquivos XML.');
+          TLogger.Info('Nï¿½o foram achados arquivos XML.');
           Result.AddPair('status', 'vazio');
           Exit;
       end;
@@ -166,7 +166,6 @@ begin
 
        LXmlDescompactado := TServiceDescompactador.DescompactarBlob(LQueryXml.FieldByName('ARQUIVO').AsBytes);
 
-<<<<<<< HEAD
        if LXmlDescompactado.Trim  <> '' then begin
        LXmlStream := TStringStream.Create(LXmlDescompactado, TEncoding.UTF8);
 
@@ -177,15 +176,7 @@ begin
          end;
        end
        else begin
-         TLogger.Info('XML ignorado por corrupção ou vazio. Chave: ' + LChaveStr);
-=======
-       LXmlStream := TStringStream.Create(LXmlDescompactado, TEncoding.UTF8);
-
-       try
-         LZipFile.Add(LXmlStream, LPasta + LChaveStr + '.xml');
-       finally
-         LXmlStream.Free;
->>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
+         TLogger.Info('XML ignorado por corrupï¿½ï¿½o ou vazio. Chave: ' + LChaveStr);
        end;
 
        LQueryXml.Next;
@@ -193,10 +184,6 @@ begin
 
       LZipFile.Close;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
       // Preparar o Anexo
       LAnexoZip.NomeArquivo  := 'Notas_Processadas.zip' ;
 
@@ -216,7 +203,7 @@ begin
     LEmailService.Enviar(
       aEmailDestino,
       'Envio de XMLs - CNPJ: ' + aCnpj,
-      'Olá, segue em anexo os XMLs organizados',
+      'Olï¿½, segue em anexo os XMLs organizados',
       [LAnexoZip]
     );
 
