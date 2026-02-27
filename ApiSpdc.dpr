@@ -7,13 +7,12 @@ program ApiSpdc;
 uses
   System.SysUtils,
   Horse,
-<<<<<<< HEAD
+
   {$IFDEF MSWINDOWS}
   Winapi.Windows,
   Utils.Startup in 'Utils\Utils.Startup.pas',
   {$ENDIF}
-=======
->>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
+
   Infra.Horse in 'Infra\Infra.Horse.pas',
   Infra.Logger in 'Infra\Infra.Logger.pas',
   Utils.Configuracao in 'Utils\Utils.Configuracao.pas',
@@ -28,7 +27,6 @@ uses
   Router.ArquivosXml in 'Routers\Router.ArquivosXml.pas',
   Service.ACBrMail.Email in 'Services\Service.ACBrMail.Email.pas';
 
-<<<<<<< HEAD
 
 var
   {$IFDEF MSWINDOWS}
@@ -53,22 +51,18 @@ begin
      {$ENDIF}
 
      TServerHorse.Start(9005);
-=======
 begin
   try
      TAppConfig.CarregarIni;
      TServerHorse.Start(9000);
->>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
   except
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);
   end;
-<<<<<<< HEAD
 
   {$IFDEF MSWINDOWS}
   if LMutex <> 0 then
     ReleaseMutex(LMutex);
   {$ENDIF}
-=======
->>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
+
 end.
