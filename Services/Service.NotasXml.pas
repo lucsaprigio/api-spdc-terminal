@@ -166,6 +166,7 @@ begin
 
        LXmlDescompactado := TServiceDescompactador.DescompactarBlob(LQueryXml.FieldByName('ARQUIVO').AsBytes);
 
+<<<<<<< HEAD
        if LXmlDescompactado.Trim  <> '' then begin
        LXmlStream := TStringStream.Create(LXmlDescompactado, TEncoding.UTF8);
 
@@ -177,6 +178,14 @@ begin
        end
        else begin
          TLogger.Info('XML ignorado por corrupção ou vazio. Chave: ' + LChaveStr);
+=======
+       LXmlStream := TStringStream.Create(LXmlDescompactado, TEncoding.UTF8);
+
+       try
+         LZipFile.Add(LXmlStream, LPasta + LChaveStr + '.xml');
+       finally
+         LXmlStream.Free;
+>>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
        end;
 
        LQueryXml.Next;
@@ -184,6 +193,10 @@ begin
 
       LZipFile.Close;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7147a264007f536c439881626a0d5a9840d9ed63
       // Preparar o Anexo
       LAnexoZip.NomeArquivo  := 'Notas_Processadas.zip' ;
 
